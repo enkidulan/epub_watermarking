@@ -1,0 +1,12 @@
+[buildout]
+extends =
+#     profiles/production.cfg
+#     profiles/devel.cfg
+
+
+# uncomment this if you want your app starts after reboot automatically
+#parts += start_on_reboot
+
+# set up a custom port or other specific stuff
+#[services_config]
+#running_port = 5545
