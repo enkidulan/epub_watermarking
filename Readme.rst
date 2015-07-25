@@ -73,12 +73,18 @@ This project has two independent parts:
     * front-end
     * back-end
 
+For the sake of simplicity Django serves front-end app static:
+    - production config serves files from "ngbp/bin" folder
+    - development config serves files from "ngbp/build" folder
+
 Front end
 ---------
 
-Front-end doesn't care about back-end at all and can be used separately,
-it's single file javascript application based on AngularJS and ngpb
-template.
+Front-end is file javascript application based on AngularJS and ngpb
+template. For more documentation about how to work with front-end app take a
+look at ngbp docs - https://github.com/ngbp/ngbp. However there is a slight
+difference. First of all the "ngbp/bin" is under version control and this
+is production fron-end app, and does not remove this directory on "build" task.
 
 TODO: describe API calls here
 
@@ -86,9 +92,20 @@ Back end
 --------
 
 Back-end is based on Django and django-rest-framework and provides API for
-front-end app cals.
+front-end app calls.
 
-TODO: describe API calls here
+The back-end separated on independent modules and should be delivered as
+different python distributions(aka packages), but for the same sake of simplicity
+it is not. The back-end components with brief description is following:
+    * web-app that handles request, adds new jobs to distributor and notify
+      user when job is done with providing results. On this level handles all
+      authentication and authorization.
+    * broker, handles jobs and controls theirs states, assigns jobs to workers.
+    * process worker - does the actual all work with downloading file and watermarking
+    * results delivery worker - handles delivery of the job results to user
+
+Won't describe all structure because it's too much time consuming, so take a look
+at code and sphinx generated API-docs.
 
 
 Running application
