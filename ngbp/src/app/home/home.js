@@ -38,7 +38,25 @@ angular.module( 'ngBoilerplate.home', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'HomeCtrl', function HomeController( $scope ) {
+.controller( 'HomeCtrl', function HomeController( $scope, $http ) {
+  $scope.submitPromise = null;
+  $scope.is_error_allert = false;
+  $scope.hash = null;
+  $scope.url = null;
+  $scope.watermark = function(){
+    $scope.submitPromise = $http.post('/add_to_watermark_queue', {hash: $scope.hash, url: $scope.url});
+
+    $scope.submitPromise.
+      success(function(data, status, headers, config) {
+        // this callback will be called asynchronously
+        // when the response is available
+      }).
+      error(function(data, status, headers, config) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        $scope.is_error_allert = true;
+      });
+  };
 })
 
 ;
