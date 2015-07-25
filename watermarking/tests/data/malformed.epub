@@ -1,0 +1,2 @@
+b'<?xml version="1.0"?>\r\n<container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container">\r\n    <rootfiles>\r\n        <rootfile full-path="content.opf" media-type="application/oebps-package+xml"/>\r\n   </rootfiles>\r\n</container>'
+<!-- b'watermark: my_signature-timestamp' -->
