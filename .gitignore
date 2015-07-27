@@ -17,3 +17,4 @@ buildout.cfg
 src/
 develop-eggs/
 *.log
+data/*

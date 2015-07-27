@@ -8,11 +8,12 @@ Questions and assumptions
 *General assumptions:*
     * support only epub format, all other treats as unsupported
     * simple url validation
-    * file size limitation 100 MB
+    * no file size limitation
     * not sure about way of result delivery
 
 *Confusing things that I don't get:*
-    * "A REST GET endpoint, you determine the URL."
+    * "A REST GET endpoint, you determine the URL." - I don't see any reasons
+       for using django rest framework here
 
 
 Installation notes
@@ -21,7 +22,7 @@ Installation notes
 Pre-requirements
 ----------------
 
-You need to have python 3.5 or newest to build this environment, also you need to have python2.7 for running acceptance tests.
+You need to have python 3.5 or newest to build this environment
 
 Environment assembling
 ----------------------

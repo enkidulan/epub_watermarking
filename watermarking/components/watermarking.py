@@ -19,7 +19,7 @@ def add_watermark_to_xml(content, watermark):
 
 class EpubWatermarker(object):
     """
-    Class for watermarking epub files
+    Class for watermarking epub <files></files>
     """
 
     watermark_template = "watermark: {0}"

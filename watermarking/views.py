@@ -5,8 +5,10 @@ interaction.
 import json
 import colander
 
-from django.http import JsonResponse
+from django.http import JsonResponse, FileResponse
 from django.views.decorators.http import require_http_methods
+
+from watermarking.components.workers import download_and_watermark
 
 
 class EPUBFileDataSchema(colander.MappingSchema):
@@ -32,4 +34,12 @@ def add_to_watermark_queue(request):
     except colander.Invalid as exp:
         JsonResponse(exp.asdict(), status=500)
 
-    return JsonResponse(deserialized)
+    # XXX: this is really dumb way of processing data and use of celery task,
+    #      but I'm out of time on his. I really would like to have here just
+    #      adding task to queue wit returning to frontend-app task id, and
+    #      additional view that will notify client that his epub is ready
+    #      and provide a link to it and start downloading
+    task = download_and_watermark.delay(**deserialized)
+    file_path = task.get()
+
+    return FileResponse(open(file_path, 'rb'))
